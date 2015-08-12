@@ -1,3 +1,5 @@
+<?php include('login.php'); ?>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,29 +27,58 @@
                     <li>
                         <a href="contact.php">Contact</a>
                     </li>
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#modalInscription">Inscription</a>
-                    </li>
-                    <li>
-                        <a href="login.php">Connexion</a>
-                    </li>
+                    <?php
+       
+        if(!isConnected()) { 
+                echo "<li><a href=\"inscription.php\">Inscription</a></li>";
+                ?> <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Connexion</b> <span class="caret"></span></a>
+            <ul id="login-dp" class="dropdown-menu">
+                <li>
+                     <div class="row">
+                            <div class="col-md-12">
+                                 <form class="form" role="form" method="post" action="login.php" accept-charset="UTF-8" id="login-nav">
+                                        <div class="form-group">
+                                             <label class="sr-only" for="exampleInputEmail2">Adresse email</label>
+                                             <input type="email" class="form-control" name="exampleInputEmail2" id="exampleInputEmail2" placeholder="Adresse email" required>
+                                        </div>
+                                        <div class="form-group">
+                                             <label class="sr-only" for="exampleInputPassword2">Mot de passe</label>
+                                             <input type="password" class="form-control" name="exampleInputPassword2" id="exampleInputPassword2" placeholder="Mot de passe" required>
+                                             <div class="help-block text-right"><a href="">Mot de passe oublié ?</a></div>
+                                        </div>
+                                        <div class="form-group">
+                                             <button type="submit" class="btn btn-primary btn-block">Connexion</button>
+                                        </div>
+                                 </form>
+                            </div>
+                            <div class="bottom text-center">
+                                Pas encore de compte ? <a href="#"><b>Inscrivez-vous !</b></a>
+                            </div>
+                     </div>
+                </li> <?php }
+ 
+        else {
+                echo "<li><a href=\"profil.php\">Mon profil</a></li>";
+
+                if (isadmin()) { 
+                    echo ("<li><a href=\"gestion.php\">Administration</a></li>");
+                }
+                
+
+                echo "<li><a href=\"logout.php\">Déconnexion</a></li>";
+                
+        }
+ 
+?>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
+    <?php if(isConnected() && !isverified()) { ?>
+    <div class="alert alert-danger non-verif" role="alert">Votre compte n'est pas activé. Veuillez cliquer sur le lien de validation que vous avez reçu par mail afin de pouvoir passer une commande.</div>
+    <?php } ?>
 
-    <div class="modal fade" id="modalInscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Inscription</h4>
-      </div>
-      <div class="modal-body">
-        <?php include("inscription.php"); ?>
-      </div>
-    </div>
-  </div>
-</div>

@@ -41,7 +41,12 @@
 
     <!-- Page Content -->
     <div class="container">
-
+        <?php if(isset($_POST['messageActivation'])) { ?>
+        <div class="alert alert-info non-verif" role="alert"><?php echo($_POST['messageActivation']);?></div>
+        <?php } ?>
+        <?php if(isset($_GET['mdp']) && $_GET['mdp']=='incorrect') { ?>
+        <div class="alert alert-danger mdp" role="alert">Mot de passe incorrect</div>
+        <?php } ?>
         <div class="row">
 
             <div class="col-md-3">
