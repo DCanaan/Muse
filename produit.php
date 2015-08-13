@@ -3,6 +3,10 @@
     $idProduit = $_GET['idProduit'];
     $q=$bdd->query("SELECT * FROM produits WHERE id = '$idProduit'");
     $ligne = $q-> fetch();
+
+    $nombreClick=$ligne['nbClicks']+1;
+    $ajoutClick = $bdd -> prepare("UPDATE produits SET nbClicks='$nombreClick' WHERE id='$idProduit'");
+    $ajoutClick -> execute();
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +60,7 @@
             <div class="col-md-9">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                    <img class="img-responsive" src="img/<?php echo($ligne["id"]);?>/<?php echo($ligne["titre"]);?>Cover.jpg" style="" alt="">
                     <div class="caption-full">
                         <h4 class="pull-right"><?php echo($ligne['prix'])?>€</h4>
                         <h4><a href="#"><?php echo($ligne['titre'])?></a>

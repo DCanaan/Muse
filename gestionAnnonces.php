@@ -7,6 +7,8 @@ require_once("config.php");
 if(!isConnected() || !isadmin()){
     header('Location: index.php');
 };
+
+$q=$bdd->query("SELECT * FROM produits ORDER BY id desc");
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +30,7 @@ if(!isConnected() || !isadmin()){
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,11 +76,44 @@ if(!isConnected() || !isadmin()){
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                     <a href="#menu-toggle" class="btn btn-default pull pull-right" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
                     <div class="col-lg-12">
-                        <h1>Bienvenu sur l'interface d'administration</h1>
-                        <p>Veuillez sélectionner la partie que vous souhaitez modifier dans le menu situé sur la gauche.</p>
-                        <p>N'oubliez pas de vous déconnecter lorsque les modifications seront terminées.</p>
+                        <h1>Gestion des annonces</h1>
+                        <a href="addProduct.php" class="btn btn-success" id="addProduct">Ajouter un nouveau produit</a>
+
+                        <div class="row">
+        <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+                <h3 class="panel-title">Annonces en ligne actuellement</h3>
+                <div class="pull-right">
+                    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filtrer</button>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr class="filters">
+                        <th><input type="text" class="form-control" placeholder="ID" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Nom" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Prix" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Nombre de vues" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Modification" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Suppression" disabled></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while($annonce = $q-> fetch()) {
+                    echo("<tr>");
+                        echo("<td>".$annonce['id']."</td>");
+                        echo("<td>".$annonce['titre']."</td>");
+                        echo("<td>".$annonce['prix']."</td>");
+                        echo("<td>".$annonce['nbClicks']."</td>");
+                        echo("<td><a href=\"modifAnnonce.php?idAnnonce=".$annonce['id']."\">Modifier ce produit</a>");
+                        echo("<td><a href=\"#\" onClick=\"confirme('".$annonce['id']."')\">Supprimer ce produit</a>");
+                    echo("</tr>");
+                    } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
                         <a href="logout.php" class="btn btn-danger" id="">Deconnexion</a>
                     </div>
                 </div>

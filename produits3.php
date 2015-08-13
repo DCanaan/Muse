@@ -1,6 +1,6 @@
 <?php
     require_once("config.php"); 
-    $q=$bdd->query("SELECT * FROM produits ORDER BY id desc");
+    $q=$bdd->query("SELECT * FROM produits ORDER BY nbAjouts desc");
     $ligne = $q-> fetch();
 
 ?>
@@ -53,9 +53,9 @@
             <div class="col-md-3">
                 <p class="lead">Boutique en ligne</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Les nouveautés</a>
+                    <a href="produits.php" class="list-group-item">Les nouveautés</a>
                     <a href="produits2.php" class="list-group-item">Les plus consultés</a>
-                    <a href="produits3.php" class="list-group-item">Les best-seller</a>
+                    <a href="#" class="list-group-item">Les best-seller</a>
                 </div>
             </div>
 

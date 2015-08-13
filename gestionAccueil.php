@@ -7,6 +7,7 @@ require_once("config.php");
 if(!isConnected() || !isadmin()){
     header('Location: index.php');
 };
+
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +29,7 @@ if(!isConnected() || !isadmin()){
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,11 +75,24 @@ if(!isConnected() || !isadmin()){
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                     <a href="#menu-toggle" class="btn btn-default pull pull-right" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
                     <div class="col-lg-12">
-                        <h1>Bienvenu sur l'interface d'administration</h1>
-                        <p>Veuillez sélectionner la partie que vous souhaitez modifier dans le menu situé sur la gauche.</p>
-                        <p>N'oubliez pas de vous déconnecter lorsque les modifications seront terminées.</p>
+                        <h1>Gestion de l'Accueil</h1>
+                        <ul>
+                            <li>
+                                <a href="modifSlider1.php?idSlider=1">Modifier image slider 1</a>
+                            </li>
+                            <li>
+                                <a href="modifSlider2.php?idSlider=2">Modifier image slider 2</a>
+                            </li>
+                            <li>
+                                <a href="modifSlider3.php?idSlider=3">Modifier image slider 3</a>
+                            </li>
+                        </ul>
+
+
+                        <div class="row">
+                            
+                        </div>
                         <a href="logout.php" class="btn btn-danger" id="">Deconnexion</a>
                     </div>
                 </div>

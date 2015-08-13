@@ -37,6 +37,31 @@
 /*----------------------------------------------------------------------------------------------------------------------------*/
 	function securite_bdd($string)
 	{
+		$databases =array(
+
+			'default' => array(
+				'host'		=> 'localhost',
+				'database'	=> 'muse',
+				'login'		=> 'root',
+				'password'	=> 'root',
+			)
+		);
+
+		$thisConf = 'default';
+		$conf = $databases[$thisConf];
+
+		try{
+			global $bdd;
+			$bdd = new PDO(
+				'mysql:host='.$conf['host'].';dbname='.$conf['database'].';',
+				$conf['login'],
+				$conf['password'],
+				array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')
+			);
+			$bdd->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+		}catch(PDOException $e){
+			die($e->getMessage());
+		}
 		// On regarde si le type de string est un nombre entier (int)
 		if(ctype_digit($string))
 		{
@@ -45,7 +70,7 @@
 		// Pour tous les autres types
 		else
 		{
-			$string = mysql_real_escape_string($string);
+			
 			$string = addcslashes($string, '%_');
 		}
 		
