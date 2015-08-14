@@ -58,7 +58,7 @@ if(!empty($_POST))
                 $prix = $prixEuros.".".$prixCentimes;
                 try
                 {
-                    $register = $bdd->prepare("UPDATE produits (titre, description, prix) VALUES (:titre, :description, :prix) WHERE id='$idAnnonce'");
+                    $register = $bdd->prepare("UPDATE produits SET titre = :titre, description = :description, prix = :prix WHERE id='$idAnnonce'");
 
                     $register->execute([
                         ":titre" => securite_bdd($titreAnnonce),
@@ -69,14 +69,13 @@ if(!empty($_POST))
                     // $selectId = $bdd -> prepare("SELECT id FROM produits ORDER BY id DESC LIMIT 1");
                     // $selectId -> execute();
 
-                    $last_id = $bdd->lastInsertId();
 
                     $messages = 'Mise en ligne réussie !';
                                         /************************************************************
                         * Definition des constantes / tableaux et variables
                         *************************************************************/
                         // Constantes
-                        $target= dirname(__FILE__).'/img/'.$last_id.'/'; // Repertoire cible
+                        $target= dirname(__FILE__).'/img/'.$ligne['id'].'/'; // Repertoire cible
                         define('MAX_SIZE', 2000000); // Taille max en octets du fichier
                         define('WIDTH_MAX', 1600); // Largeur max de l'image en pixels
                         define('HEIGHT_MAX', 600); // Hauteur max de l'image en pixels

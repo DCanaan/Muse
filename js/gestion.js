@@ -53,7 +53,14 @@ function confirmeUser( identifiant ){
                 if( confirmation ){
                     document.location.href = "supprUtilisateur.php?idUtilisateur="+identifiant ;
                 }
-            }            
+            }    
+
+function confirmeFAQ( identifiant ){
+                var confirmation = confirm( "Voulez vous vraiment supprimer définitivement cette question ?" ) ;
+                if( confirmation ){
+                    document.location.href = "supprQuestion.php?idQuestion="+identifiant ;
+                }
+            }     
 
 $(document).ready(function () {
     //Initialize tooltips

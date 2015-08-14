@@ -55,7 +55,7 @@ if(!empty($_POST)) {
                             // Erreurs
                     if(isset($_FILES['fichier']['error']) && UPLOAD_ERR_OK === $_FILES['fichier']['error']) {
                                 // On renomme le fichier
-                        $nomImage = $target.'Slider-1.'.$extension;
+                        $nomImage = $target.'Slider-3.'.$extension;
                                 // Si c'est OK, on teste l'upload
                         if(move_uploaded_file($_FILES['fichier']['tmp_name'], $nomImage)) {
                             $message = 'Upload réussi !'; }
@@ -155,12 +155,12 @@ if(!empty($_POST)) {
                         <?php if(!empty($messages)) {?><div class="alert alert-info" role="alert" style="margin-top:20px;">
                     <?php echo($message); ?>
                     </div><?php } ?>
-                        <h1>Gestion de l'Accueil - Modification Slider 1</h1>
+                        <h1>Gestion de l'Accueil - Modification Slider 3</h1>
                             <div class="row">
                             <form role="form" method="post" enctype="multipart/form-data">
                                 <div class="tab-content">
                                         <h3>Image</h3>
-                                        <p>Sélectionnez l'image correspondante au Slider 1. Pour un affichage optimal sur le site, il est conseillé d'utiliser des images de dimensions égales à 800x300px, ou 1600x600px afin de conserver le ratio d'affichage.</p>
+                                        <p>Sélectionnez l'image correspondante au Slider 3. Pour un affichage optimal sur le site, il est conseillé d'utiliser des images de dimensions égales à 800x300px, ou 1600x600px afin de conserver le ratio d'affichage.</p>
                                         <div class="form-group">
                                             <span class="btn btn-default btn-file">
                                                 <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_SIZE; ?>" />
